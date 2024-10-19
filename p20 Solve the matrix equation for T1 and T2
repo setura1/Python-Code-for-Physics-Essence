@@ -1,0 +1,23 @@
+import numpy as np
+
+# 1. パラメータの設定 / Define parameters
+m = 10  # 質量 (kg) / Mass (kg)
+g = 9.81  # 重力加速度 (m/s^2) / Gravitational acceleration (m/s^2)
+theta1 = np.radians(30)  # 角度 A / Angle for T1 (30 degrees)
+theta2 = np.radians(45)  # 角度 B / Angle for T2 (45 degrees)
+
+# 2. 行列方程式の設定 / Set up the matrix equations
+# T1 * cos(30) - T2 * cos(45) = 0 (horizontal direction)
+# T1 * sin(30) + T2 * sin(45) = mg (vertical direction)
+
+A = np.array([[np.cos(theta1), -np.cos(theta2)],
+              [np.sin(theta1), np.sin(theta2)]])
+b = np.array([0, m * g])
+
+# 3. 行列方程式を解く / Solve the matrix equation for T1 and T2
+T = np.linalg.solve(A, b)
+T1, T2 = T
+
+# 4. 結果を表示 / Display the results
+print(f"Tension T1: {T1:.2f} N")
+print(f"Tension T2: {T2:.2f} N")
