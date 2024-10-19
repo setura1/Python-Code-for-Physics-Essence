@@ -1,0 +1,22 @@
+import numpy as np
+
+# 1. パラメータの設定 / Define parameters
+m = 10.0  # 物体Aの質量 (kg) / Mass of object A (kg)
+M = 50.0  # 物体Bの質量 (kg) / Mass of object B (kg)
+mu = 0.2  # 摩擦係数 / Coefficient of friction
+g = 9.81  # 重力加速度 (m/s^2) / Gravitational acceleration (m/s^2)
+v0 = 5.0  # 初速度 (m/s) / Initial velocity of object A (m/s)
+
+# 2. 相対加速度の計算 / Calculate relative acceleration
+a_relative = -mu * g * (m + M) / M
+
+# 3. 停止するまでの時間の計算 / Calculate time to stop
+t_stop = M * v0 / ((m + M) * mu * g)
+
+# 4. 停止するまでの距離の計算 / Calculate distance traveled until stop
+l_stop = (M * v0**2) / (2 * (m + M) * mu * g)
+
+# 5. 結果を表示 / Display the results
+print(f"相対加速度: {a_relative:.2f} m/s²")
+print(f"停止するまでの時間: {t_stop:.2f} 秒")
+print(f"停止するまでの距離: {l_stop:.2f} メートル")
