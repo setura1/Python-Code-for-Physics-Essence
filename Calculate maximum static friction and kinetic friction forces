@@ -1,0 +1,35 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. パラメータの設定 / Define parameters
+mu_static = 0.6  # 静止摩擦係数 / Coefficient of static friction
+mu_kinetic = 0.4  # 動摩擦係数 / Coefficient of kinetic friction
+N = 10  # 法線力 (N) / Normal force (N)
+
+# 2. 最大静止摩擦力と動摩擦力を計算 / Calculate maximum static friction and kinetic friction forces
+f_static_max = mu_static * N  # 最大静止摩擦力 / Maximum static friction force
+f_kinetic = mu_kinetic * N  # 動摩擦力 / Kinetic friction force
+
+# 3. 加える力の範囲を設定 / Define range of applied force
+applied_force = np.linspace(0, 2 * f_static_max, 500)
+
+# 4. 摩擦力を計算 / Calculate friction force
+friction_force = np.piecewise(applied_force,
+                              [applied_force <= f_static_max, applied_force > f_static_max],
+                              [lambda F: F, lambda F: f_kinetic])
+
+# 5. プロット / Plot the friction force vs applied force
+plt.figure(figsize=(8, 6))
+plt.plot(applied_force, friction_force, label="Friction Force", color="blue")
+
+# 6. グラフの設定 / Graph settings
+plt.axhline(f_static_max, color='red', linestyle='--', label=r'$\mu N$ (max static friction)')
+plt.axhline(f_kinetic, color='green', linestyle='--', label=r"$\mu' N$ (kinetic friction)")
+plt.title("Friction Force vs Applied Force")
+plt.xlabel("Applied Force [N]")
+plt.ylabel("Friction Force [N]")
+plt.legend()
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
