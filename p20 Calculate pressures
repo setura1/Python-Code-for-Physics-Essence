@@ -1,0 +1,20 @@
+import numpy as np
+
+# 1. パラメータの設定 / Define parameters
+rho = 1000  # 流体の密度 (kg/m^3, 水の場合) / Fluid density (kg/m^3, for water)
+g = 9.81  # 重力加速度 (m/s^2) / Gravitational acceleration (m/s^2)
+S = 2.0  # 底面積 (m^2) / Bottom surface area (m^2)
+l = 1.5  # 物体の高さ (m) / Height of the object (m)
+h = 3.0  # 上面の深さ (m) / Depth of the top of the object (m)
+
+# 2. 圧力の計算 / Calculate pressures
+P1 = rho * g * h  # 上面の圧力 / Pressure at the top
+P2 = rho * g * (h + l)  # 底面の圧力 / Pressure at the bottom
+
+# 3. 浮力の計算 / Calculate buoyant force
+F_buoyancy = rho * g * S * l  # F = ρ g S l
+
+# 4. 結果を表示 / Display the results
+print(f"上面の圧力 P1: {P1:.2f} Pa")
+print(f"底面の圧力 P2: {P2:.2f} Pa")
+print(f"浮力 F: {F_buoyancy:.2f} N")
