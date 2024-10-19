@@ -1,0 +1,32 @@
+import numpy as np
+
+# 1. パラメータの設定 / Define parameters
+m = 2.0  # 小物体の質量 (kg) / Mass of small object (kg)
+M = 5.0  # 大物体の質量 (kg) / Mass of large object (kg)
+v0 = 10.0  # 初速度 (m/s) / Initial velocity of the small object (m/s)
+theta1 = np.radians(30)  # 衝突前の小物体の角度 / Angle before collision (30 degrees)
+theta2 = np.radians(60)  # 衝突後の小物体の角度 / Angle after collision (60 degrees)
+
+# 2. 行列の設定 / Define the matrix for the system of equations
+A = np.array([[m * np.cos(theta2), M],
+              [m * np.sin(theta2), 0]])
+
+# 3. 右辺ベクトルの設定 / Define the right-hand side vector
+b = np.array([m * v0 * np.cos(theta1),
+              m * v0 * np.sin(theta1)])
+
+# 4. 逆行列を求める / Calculate the inverse of matrix A
+A_inv = np.linalg.inv(A)
+
+# 5. 行列方程式を解く / Solve the system of equations for v and V
+solution = np.dot(A_inv, b)
+v = solution[0]
+V = solution[1]
+
+# 6. 結果を表示 / Display the results
+print(f"小物体の速度 v: {v:.2f} m/s")
+print(f"大物体の速度 V: {V:.2f} m/s")
+
+# 7. 逆行列の表示 / Display the inverse matrix
+print("行列 A の逆行列 (Inverse of matrix A):")
+print(A_inv)
