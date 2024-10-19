@@ -1,0 +1,47 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. パラメータの設定 / Define parameters
+v0 = 5  # 初速度 v0 (m/s) / Initial velocity v0 (m/s)
+a = 2   # 加速度 a (m/s^2) / Acceleration a (m/s^2)
+t_max = 10  # 最大時間 (秒) / Maximum time (seconds)
+
+# 2. 時間の範囲を設定 / Define time range
+t_values = np.linspace(0, t_max, 500)
+
+# 3. 速度と位置を時間の関数として計算 / Compute velocity and position as functions of time
+v_t = v0 + a * t_values  # v = v0 + at
+x_t = v0 * t_values + 0.5 * a * t_values**2  # x = v0t + (1/2)at^2
+
+# 4. v^2 - v0^2 = 2ax を使って位置 x に対する速度 v を計算 / Compute velocity v as a function of position x using v^2 - v0^2 = 2ax
+v_x = np.sqrt(v0**2 + 2 * a * x_t)  # v = sqrt(v0^2 + 2ax)
+
+# 5. 速度 v(t) のプロット / Plot velocity v(t)
+plt.figure(figsize=(12, 8))
+
+plt.subplot(3, 1, 1)
+plt.plot(t_values, v_t, label="Velocity v(t)", color="blue")
+plt.title("Velocity, Position vs Time and Velocity vs Position")
+plt.xlabel("Time t [s]")
+plt.ylabel("Velocity v [m/s]")
+plt.grid(True)
+plt.legend()
+
+# 6. 位置 x(t) のプロット / Plot position x(t)
+plt.subplot(3, 1, 2)
+plt.plot(t_values, x_t, label="Position x(t)", color="green")
+plt.xlabel("Time t [s]")
+plt.ylabel("Position x [m]")
+plt.grid(True)
+plt.legend()
+
+# 7. 位置 x に対する速度 v のプロット / Plot velocity v(x) as a function of position x
+plt.subplot(3, 1, 3)
+plt.plot(x_t, v_x, label="Velocity v(x)", color="red")
+plt.xlabel("Position x [m]")
+plt.ylabel("Velocity v [m/s]")
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
