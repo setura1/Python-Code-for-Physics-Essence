@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. パラメータの設定 / Define parameters
+m = 10  # 質量 (kg) / Mass (kg)
+g = 9.81  # 重力加速度 (m/s^2) / Gravitational acceleration (m/s^2)
+theta_values = np.linspace(0, np.radians(90), 500)  # θ の範囲 (0 から 90 度) / Range of theta from 0 to 90 degrees
+
+# 2. 平行力と垂直力の計算 / Calculate forces
+F_parallel = m * g * np.sin(theta_values)  # F = mg sin(θ)
+F_perpendicular = m * g * np.cos(theta_values)  # N = mg cos(θ)
+
+# 3. プロットの設定 / Plot the forces
+plt.figure(figsize=(10, 6))
+
+# 平行力のプロット / Plot parallel force (F)
+plt.plot(np.degrees(theta_values), F_parallel, label="F_parallel = mg sin(θ)", color="red")
+
+# 垂直力のプロット / Plot perpendicular force (N)
+plt.plot(np.degrees(theta_values), F_perpendicular, label="F_perpendicular = mg cos(θ)", color="blue")
+
+# グラフの設定 / Graph settings
+plt.title("Forces Acting on an Object on an Inclined Plane")
+plt.xlabel("Incline Angle θ [degrees]")
+plt.ylabel("Force [N]")
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
