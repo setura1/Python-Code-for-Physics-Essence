@@ -1,0 +1,32 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. パラメータの設定 / Define parameters
+g = 9.81  # 重力加速度 (m/s^2) / Gravitational acceleration (m/s^2)
+h = 5  # 点Bの高さ (m) / Height at point B (m)
+
+# 2. H の範囲を設定 / Define range for H (from h to 50 meters)
+H_values = np.linspace(h, 50, 500)
+
+# 3. 速度 v と u を計算 / Calculate speeds v and u
+v_values = np.sqrt(2 * g * (H_values - h))  # v = sqrt(2g(H - h))
+u_values = np.sqrt(2 * g * H_values)  # u = sqrt(2gH)
+
+# 4. プロットの設定 / Plot v and u vs H
+plt.figure(figsize=(10, 6))
+
+# プロット v / Plot v
+plt.plot(H_values, v_values, label=r"$v = \sqrt{2g(H - h)}$", color="blue")
+
+# プロット u / Plot u
+plt.plot(H_values, u_values, label=r"$u = \sqrt{2gH}$", color="red")
+
+# 5. グラフの設定 / Graph settings
+plt.title("Speeds at Point B and Point C vs Initial Height H", fontsize=14)
+plt.xlabel("Initial Height H [m]", fontsize=12)
+plt.ylabel("Speed [m/s]", fontsize=12)
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
