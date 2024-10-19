@@ -1,0 +1,37 @@
+import sympy as sp
+import numpy as np
+
+# ====== Symbolic Solution ======
+# 1. シンボルを定義 / Define symbols
+m, M, v0, e, vp, vQ = sp.symbols('m M v0 e vp vQ')
+
+# 2. 式を定義 / Define the equations
+eq1 = sp.Eq(m * vp + M * vQ, m * v0)  # Momentum conservation equation
+eq2 = sp.Eq(vQ - vp, e * v0)  # Coefficient of restitution equation
+
+# 3. 方程式を解く / Solve the equations
+symbolic_solution = sp.solve([eq1, eq2], (vp, vQ))
+
+# 4. 結果を表示 / Display the symbolic solutions
+vp_solution = symbolic_solution[vp]
+vQ_solution = symbolic_solution[vQ]
+print(f"【Symbolic Solution】")
+print(f"Pの速度 v_p (symbolic): {vp_solution}")
+print(f"Qの速度 v_Q (symbolic): {vQ_solution}")
+print("\n")
+
+# ====== Numerical Solution ======
+# 1. パラメータの設定 / Define numerical parameters
+m_num = 2.0  # 衝突する物体の質量 (kg) / Mass of object P (kg)
+M_num = 5.0  # 静止している物体の質量 (kg) / Mass of object Q (kg)
+v0_num = 10.0  # 初速度 (m/s) / Initial velocity of object P (m/s)
+e_num = 0.8  # 反発係数 / Coefficient of restitution
+
+# 2. 数式を適用して速度を計算 / Calculate velocities using the formulas
+vp_num = (m_num * v0_num - M_num * e_num * v0_num) / (m_num + M_num)
+vQ_num = ((1 + e_num) * m_num * v0_num) / (m_num + M_num)
+
+# 3. 結果を表示 / Display the numerical results
+print(f"【Numerical Solution】")
+print(f"Pの速度 v_p (numerical): {vp_num:.2f} m/s")
+print(f"Qの速度 v_Q (numerical): {vQ_num:.2f} m/s")
