@@ -1,0 +1,40 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. パラメータの設定 / Define parameters
+v0 = 10  # 初速度 (m/s) / Initial velocity (m/s)
+g = 9.81  # 重力加速度 (m/s^2) / Gravitational acceleration (m/s^2)
+mu = 0.3  # 摩擦係数 / Coefficient of friction
+
+# 2. 角度 θ の範囲を設定 / Define range for θ (in degrees)
+theta_values = np.linspace(0, 90, 500)  # θ from 0 to 90 degrees
+theta_radians = np.radians(theta_values)  # Convert θ to radians for calculation
+
+# 3. 加速度 a を計算 / Calculate acceleration a
+a_values = g * (np.sin(theta_radians) - mu * np.cos(theta_radians))
+
+# 4. 移動距離 l を計算 / Calculate distance l
+l_values = (v0**2) / (2 * g * (np.sin(theta_radians) + mu * np.cos(theta_radians)))
+
+# 5. プロットの設定 / Plot both acceleration and distance
+plt.figure(figsize=(10, 8))
+
+# プロット加速度 a / Plot acceleration a
+plt.subplot(2, 1, 1)
+plt.plot(theta_values, a_values, label=r"$a = g(\sin(\theta) - \mu \cos(\theta))$", color="red")
+plt.title("Acceleration and Distance vs Incline Angle (θ)")
+plt.xlabel("Incline Angle θ [degrees]")
+plt.ylabel("Acceleration a [m/s²]")
+plt.grid(True)
+plt.legend()
+
+# プロット移動距離 l / Plot distance l
+plt.subplot(2, 1, 2)
+plt.plot(theta_values, l_values, label=r"$l = \frac{v_0^2}{2g(\sin(\theta) + \mu \cos(\theta))}$", color="blue")
+plt.xlabel("Incline Angle θ [degrees]")
+plt.ylabel("Distance l [m]")
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
