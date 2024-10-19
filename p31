@@ -1,0 +1,25 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. μの範囲を設定 / Define range for μ
+mu_values = np.linspace(0.1, 2, 500)  # μの範囲 (0.1 から 2 まで) / Range of μ (0.1 to 2)
+
+# 2. θ0 を計算 (tan⁻¹(1 / 2μ)) / Calculate θ0 based on the equation tan(θ0) = 1 / 2μ
+theta0_values = np.arctan(1 / (2 * mu_values))
+
+# 3. ラジアンを度に変換 / Convert from radians to degrees for better interpretation
+theta0_deg = np.degrees(theta0_values)
+
+# 4. プロット / Plot θ0 vs μ
+plt.figure(figsize=(8, 6))
+plt.plot(mu_values, theta0_deg, label=r'$\theta_0 = \tan^{-1}\left(\frac{1}{2\mu}\right)$', color='blue')
+
+# 5. グラフの設定 / Graph settings
+plt.title("Plot of θ₀ vs μ", fontsize=14)
+plt.xlabel(r"Coefficient of Friction μ", fontsize=12)
+plt.ylabel(r"Angle θ₀ [degrees]", fontsize=12)
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
