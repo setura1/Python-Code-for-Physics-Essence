@@ -1,0 +1,20 @@
+# Python code to calculate the final velocity v' based on impulse and initial conditions
+
+# 1. パラメータの設定 / Define parameters
+m = 5  # 質量 (kg) / Mass of the object (kg)
+F = 10  # 力 (N) / Force applied (N)
+t = 2  # 時間 (s) / Time over which the force is applied (s)
+v_initial = 3  # 初速度 (m/s) / Initial velocity (m/s)
+
+# 2. インパルスの計算 / Calculate the impulse (Impulse = F * Δt)
+impulse = F * t
+
+# 3. 運動量の変化を計算 / Calculate change in momentum
+momentum_change = impulse
+
+# 4. 最終速度 v' を計算 / Calculate the final velocity v' (Impulse = m * (v' - v))
+v_final = (momentum_change + m * v_initial) / m
+
+# 5. 結果を表示 / Display the result
+print(f"初速度: {v_initial} m/s")
+print(f"力を受けた後の最終速度 v': {v_final:.2f} m/s")
