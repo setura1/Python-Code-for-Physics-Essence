@@ -1,0 +1,117 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. グラフ(a)の速度・加速度・距離の計算 / Calculation for graph (a)
+def graph_a_velocity(t):
+    """(a)の速度を計算 / Velocity function for graph (a)"""
+    if t < 2:
+        return 3 * t  # 0 <= t < 2
+    elif t < 3:
+        return 6  # 2 <= t < 3
+    else:
+        return 6 - 6 * (t - 3)  # t >= 3
+
+def graph_a_acceleration(t):
+    """(a)の加速度を計算 / Acceleration function for graph (a)"""
+    if t < 2:
+        return 3  # 0 <= t < 2
+    elif t < 3:
+        return 0  # 2 <= t < 3
+    else:
+        return -6  # t >= 3
+
+# 2. グラフ(b)の速度・加速度・距離の計算 / Calculation for graph (b)
+def graph_b_velocity(t):
+    """(b)の速度を計算 / Velocity function for graph (b)"""
+    if t < 2:
+        return 2 * t  # 0 <= t < 2
+    elif t < 3:
+        return 4  # 2 <= t < 3
+    else:
+        return 4 - 8 * (t - 3)  # t >= 3
+
+def graph_b_acceleration(t):
+    """(b)の加速度を計算 / Acceleration function for graph (b)"""
+    if t < 2:
+        return 2  # 0 <= t < 2
+    elif t < 3:
+        return 0  # 2 <= t < 3
+    else:
+        return -8  # t >= 3
+
+# 3. 時間の範囲 / Time range
+t_values = np.linspace(0, 5, 500)
+
+# 4. 速度と加速度をそれぞれ計算 / Compute velocity and acceleration for both graphs
+v_a = [graph_a_velocity(t) for t in t_values]
+a_a = [graph_a_acceleration(t) for t in t_values]
+
+v_b = [graph_b_velocity(t) for t in t_values]
+a_b = [graph_b_acceleration(t) for t in t_values]
+
+# 5. 速度と加速度のプロット / Plotting velocity and acceleration
+plt.figure(figsize=(10, 6))
+
+# 速度グラフ(a) / Velocity graph (a)
+plt.subplot(2, 2, 1)
+plt.plot(t_values, v_a, label="Velocity (a)")
+plt.title("Velocity vs Time (a)")
+plt.xlabel("Time [s]")
+plt.ylabel("Velocity [m/s]")
+plt.grid(True)
+
+# 加速度グラフ(a) / Acceleration graph (a)
+plt.subplot(2, 2, 2)
+plt.plot(t_values, a_a, label="Acceleration (a)", color="red")
+plt.title("Acceleration vs Time (a)")
+plt.xlabel("Time [s]")
+plt.ylabel("Acceleration [m/s²]")
+plt.grid(True)
+
+# 速度グラフ(b) / Velocity graph (b)
+plt.subplot(2, 2, 3)
+plt.plot(t_values, v_b, label="Velocity (b)")
+plt.title("Velocity vs Time (b)")
+plt.xlabel("Time [s]")
+plt.ylabel("Velocity [m/s]")
+plt.grid(True)
+
+# 加速度グラフ(b) / Acceleration graph (b)
+plt.subplot(2, 2, 4)
+plt.plot(t_values, a_b, label="Acceleration (b)", color="red")
+plt.title("Acceleration vs Time (b)")
+plt.xlabel("Time [s]")
+plt.ylabel("Acceleration [m/s²]")
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
+
+# 6. 距離を計算する関数（グラフaとb）/ Function to calculate distance (for both graphs)
+def calculate_distance_a():
+    """4秒間の走行距離 (グラフa) / Calculate distance in 4 seconds (graph a)"""
+    distance = 0
+    # 0-2秒間 / From 0 to 2 seconds
+    distance += 0.5 * 3 * 2**2
+    # 2-3秒間 / From 2 to 3 seconds
+    distance += 6 * (3 - 2)
+    # 3-4秒間 / From 3 to 4 seconds
+    distance += 0.5 * (6 + 0) * (4 - 3)
+    return distance
+
+def calculate_distance_b():
+    """4秒間の走行距離 (グラフb) / Calculate distance in 4 seconds (graph b)"""
+    distance = 0
+    # 0-2秒間 / From 0 to 2 seconds
+    distance += 0.5 * 2 * 2**2
+    # 2-3秒間 / From 2 to 3 seconds
+    distance += 4 * (3 - 2)
+    # 3-4秒間 / From 3 to 4 seconds
+    distance += 0.5 * (4 - 4) * (4 - 3)
+    return distance
+
+# 7. 距離を計算して表示 / Calculate and display distances
+distance_a = calculate_distance_a()
+distance_b = calculate_distance_b()
+print(f"4秒間の走行距離 (a): {distance_a} m")
+print(f"4秒間の走行距離 (b): {distance_b} m")
